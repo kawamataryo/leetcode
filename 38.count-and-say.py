@@ -13,4 +13,10 @@ class Solution:
         # 21
         # 1211
         # 112112
+        return 
+    
+    def say(n: int) -> int:
+        if n == 1:
+            return 1
+        say(n - 1)
 # @lc code=end
