@@ -7,6 +7,10 @@
 # @lc code=start
 class Solution:
     def climbStairs(self, n: int) -> int:
-        
-# @lc code=end
+        # 1檀か2段
 
+        return 1
+        # n
+        # n / 2
+        #
+# @lc code=end
