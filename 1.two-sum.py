@@ -7,9 +7,11 @@
 # @lc code=start
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        for i, num in enumerate(nums):
-            diff = target - num
-            if diff in nums and nums.index(diff) != i:
-                return [i, nums.index(diff)]
-
+        hashmap = {}
+        for i in range(len(nums)):
+            hashmap[nums[i]] = i
+        for i in range(len(nums)):
+            complement = target - nums[i]
+            if complement in hashmap and hashmap[complement] != i:
+                return [i, hashmap[complement]]
 # @lc code=end
