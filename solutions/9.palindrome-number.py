@@ -9,14 +9,22 @@ import math
 
 class Solution:
     def isPalindrome(self, x: int) -> bool:
+        # first
+        # ------------------------
+        # if x < 0:
+        #     return False
+        # stringX = str(x)
+        # length = len(stringX)
+        # halfLength = math.floor(length / 2)
+
+        # if length % 2 == 0:
+        #     return stringX[0:halfLength] == stringX[halfLength::][::-1]
+        # else:
+        #     return stringX[0:halfLength] == stringX[halfLength + 1::][::-1]
+
+        # popular solution
         if x < 0:
             return False
-        stringX = str(x)
-        length = len(stringX)
-        halfLength = math.floor(length / 2)
 
-        if length % 2 == 0:
-            return stringX[0:halfLength] == stringX[halfLength::][::-1]
-        else:
-            return stringX[0:halfLength] == stringX[halfLength + 1::][::-1]
+        return str(x) == str(x)[::-1]
 # @lc code=end
