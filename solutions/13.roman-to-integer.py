@@ -7,34 +7,30 @@
 # @lc code=start
 class Solution:
     def romanToInt(self, s: str) -> int:
-        roman_map_single = {
-            'I':  1,
-            'V':  5,
-            'X':  10,
-            'L':  50,
-            'C':  100,
-            'D':  500,
-            'M':  1000
-        }
-        roman_map_double = {
-            'IV': 4,
-            'IX': 9,
-            'XL': 40,
-            'XC': 90,
-            'CD': 400,
-            'CM': 900,
+        roman_map = {
+            "I": 1,
+            "V": 5,
+            "X": 10,
+            "L": 50,
+            "C": 100,
+            "D": 500,
+            "M": 1000,
+            "IV": 4,
+            "IX": 9,
+            "XL": 40,
+            "XC": 90,
+            "CD": 400,
+            "CM": 900,
         }
 
-        double_count = 0
-        for word, value in roman_map_double.items():
-            if word in s:
-                double_count += value
-                s = s.replace(word, '')
+        result = 0
+        while len(s) > 0:
+            if s[0:2] in roman_map:
+                result += roman_map[s[0:2]]
+                s = s[2:]
+            elif s[0:1] in roman_map:
+                result += roman_map[s[0:1]]
+                s = s[1:]
 
-        single_count = sum([roman_map_single[x] for x in s])
-        return single_count + double_count
-
-        # 'MCM'.strip('CM')が''になるのはなぜ？
-        # stripは含まれるものが削除される。文字順は考慮しない。
-
+        return result
 # @lc code=end

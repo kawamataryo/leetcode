@@ -7,18 +7,14 @@
 # @lc code=start
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        ziped_strs = zip(*[list(s) for s in strs])
-
-        output = ''
-        for strs in ziped_strs:
-            standard_val = strs[0]
-            if all([s == standard_val for s in strs]):
-                output += standard_val
-            else:
+        prefix = strs[0]
+        for s in strs:
+            while len(prefix) > 0:
+                if prefix == s[:len(prefix)]:
+                    break
+                prefix = prefix[:-1]
+            if len(prefix) == 0:
                 break
-        return output
 
-        # 参考メモ
-        # [all()とany()は意外と使える子かもしれない。 - podhmoの日記](https://podhmo.hatenadiary.org/entry/20111213/1323788999)
-
+        return prefix
 # @lc code=end
