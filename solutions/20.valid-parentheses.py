@@ -7,13 +7,23 @@
 # @lc code=start
 class Solution:
     def isValid(self, s: str) -> bool:
-        # 最小単位としてペアがあるので、それを見つけてどんどん消していく方法
-        while '()' in s or '{}' in s or '[]' in s:
-            s = s.replace('()',"")
-            s = s.replace('{}',"")
-            s = s.replace('[]',"")
-        return s == ''
+        if (len(s) % 2 != 0):
+            return False
 
+        pair = {
+            '(': ')',
+            '{': '}',
+            '[': ']',
+        }
 
+        stack = []
 
+        for char in s:
+            if char in pair:
+                stack.append(pair[char])
+            elif len(stack) > 0 and stack[-1] == char:
+                stack.pop()
+            else:
+                return False
+        return len(stack) == 0
 # @lc code=end
