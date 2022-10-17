@@ -5,14 +5,9 @@
 #
 
 # @lc code=start
+import re
+
 class Solution:
     def numJewelsInStones(self, jewels: str, stones: str) -> int:
-        count = 0
-
-        for i in range(len(stones)):
-            stone = stones[i]
-            if stone in jewels:
-                count += 1
-
-        return count
+        return len(re.findall(f'[{jewels}]', stones))
 # @lc code=end
