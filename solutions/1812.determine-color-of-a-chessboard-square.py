@@ -7,16 +7,5 @@
 # @lc code=start
 class Solution:
     def squareIsWhite(self, coordinates: str) -> bool:
-        horizontal = {
-            "a": False,
-            "b": True,
-            "c": False,
-            "d": True,
-            "e": False,
-            "f": True,
-            "g": False,
-            "h": True,
-        }
-
-        return horizontal[coordinates[0]] != int(coordinates[1]) % 2 == 0
+        return ord(coordinates[0]) % 2 != int(coordinates[1]) % 2
 # @lc code=end
