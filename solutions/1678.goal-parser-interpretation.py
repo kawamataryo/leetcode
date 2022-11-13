@@ -25,3 +25,13 @@ class Solution:
             i+=1
         return "".join(result)
 # @lc code=end
+
+# 000
+# 010
+# --- xor
+# 010
+
+# 010
+# 010
+# --- xor
+# 000

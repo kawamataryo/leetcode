@@ -14,5 +14,9 @@ class Solution:
             else:
                 char_dict[char] = 1
 
-        return len(set(char_dict.values())) == 1
+        base_val = char_dict[s[0]]
+        for key in char_dict:
+            if base_val != char_dict[key]:
+                return False
+        return True
 # @lc code=end
