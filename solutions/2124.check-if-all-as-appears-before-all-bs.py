@@ -7,6 +7,11 @@
 # @lc code=start
 class Solution:
     def checkString(self, s: str) -> bool:
-        
+        appeared_b = False
+        for i in range(len(s)):
+            if s[i] == 'b':
+                appeared_b = True
+            elif appeared_b:
+                return False
+        return True
 # @lc code=end
-
