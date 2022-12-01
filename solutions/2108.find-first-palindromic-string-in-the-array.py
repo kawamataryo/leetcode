@@ -8,10 +8,12 @@
 class Solution:
     def firstPalindrome(self, words: List[str]) -> str:
         def is_palindromic(word: str):
-            half = len(word) // 2
-            if half < 1:
-                return True
-            return word[:half] == word[-half:][::-1]
+            i = 0
+            while i < len(word) // 2:
+                if word[i] != word[-(i+1)]:
+                    return False
+                i += 1
+            return True
 
         for word in words:
             if is_palindromic(word):

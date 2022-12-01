@@ -13,6 +13,11 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        
-# @lc code=end
+        visited_nodes = set()
+        current_node = head
 
+        while current_node not in visited_nodes and current_node is not None:
+            visited_nodes.add(current_node)
+            current_node = current_node.next
+        return current_node is not None
+# @lc code=end

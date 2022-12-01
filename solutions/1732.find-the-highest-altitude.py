@@ -7,12 +7,11 @@
 # @lc code=start
 class Solution:
     def largestAltitude(self, gain: List[int]) -> int:
-        altitudes = [0]
-        max_gain = 0
-        for i, g in enumerate(gain):
-            altitude = altitudes[i] + g
-            altitudes.append(altitude)
-            if altitude > max_gain:
-                max_gain = altitude
-        return max_gain
+        current_altitudes = 0
+        highest_altitude = 0
+        for g in gain:
+            current_altitudes = current_altitudes + g
+            if current_altitudes > highest_altitude:
+                highest_altitude = current_altitudes
+        return highest_altitude
 # @lc code=end
