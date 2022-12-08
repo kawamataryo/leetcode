@@ -14,7 +14,7 @@
 class Solution:
     def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
         result = 0
-        nodes = [root]
+        nodes = deque([root])
         while len(nodes) > 0:
             current_node = nodes[-1]
 
