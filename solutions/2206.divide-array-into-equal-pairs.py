@@ -7,15 +7,9 @@
 # @lc code=start
 class Solution:
     def divideArray(self, nums: List[int]) -> bool:
-        nums_dict = {}
+        result = 0
         for n in nums:
-            if n in nums_dict:
-                nums_dict[n] += 1
-            else:
-                nums_dict[n] = 1
+            result ^= n
 
-        for val in nums_dict.values():
-            if val % 2 != 0:
-                return False
-        return True
+        return result == 0
 # @lc code=end
