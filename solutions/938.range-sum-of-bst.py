@@ -12,7 +12,7 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
+    def rangeSum2032BST(self, root: Optional[TreeNode], low: int, high: int) -> int:
         result = 0
         nodes = deque([root])
         while len(nodes) > 0:
