@@ -13,8 +13,18 @@ class Node:
         self.children = children
 """
 
+from itertools import chain
+
 class Solution:
     def preorder(self, root: 'Node') -> List[int]:
-        
-# @lc code=end
+        if root is None:
+            return []
+        if root.children is None:
+            return [root.val]
 
+        childe_values = []
+        for node in root.children:
+            childe_values += self.preorder(node)
+
+        return [root.val, *childe_values]
+# @lc code=end
