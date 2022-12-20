@@ -17,12 +17,10 @@ class Solution:
         def collectValue(node: Optional[TreeNode]):
             if node is None:
                 return
-            values.append(node.val)
             collectValue(node.left)
+            values.append(node.val)
             collectValue(node.right)
         collectValue(root)
-
-        values.sort()
 
         result = TreeNode(values[0])
         currentNode = result

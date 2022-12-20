@@ -22,9 +22,14 @@ class Solution:
         if root.children is None:
             return [root.val]
 
-        childe_values = []
-        for node in root.children:
-            childe_values += self.preorder(node)
+        stack = collections.deque([root])
+        result = []
 
-        return [root.val, *childe_values]
+        while stack:
+            node = stack.pop()
+            result.append(node.val)
+            for n in node.children:
+                stack.append(n)
+
+        return result
 # @lc code=end
