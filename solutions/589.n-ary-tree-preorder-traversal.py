@@ -28,7 +28,7 @@ class Solution:
         while stack:
             node = stack.pop()
             result.append(node.val)
-            for n in node.children:
+            for n in node.children[::-1]:
                 stack.append(n)
 
         return result
