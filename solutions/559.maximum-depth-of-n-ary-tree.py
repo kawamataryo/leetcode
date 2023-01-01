@@ -19,11 +19,14 @@ class Solution:
         if root is None:
             return 0
 
-        def traversal_node(node: 'Node', depth):
-            if node.children is None:
-                return depth
-            return [traversal_node(child_node, depth + 1) for child_node in node.children]
+        q = deque([(root, 1)])
+        max_depth = 0
 
-        depths = traversal_node(root, 1)
-        return max(depths)
+        while q:
+            node, depth = q.popleft()
+            if depth > max_depth:
+                max_depth = depth
+            for child in node.children:
+                q.append((child, depth + 1))
+        return max_depth
 # @lc code=end

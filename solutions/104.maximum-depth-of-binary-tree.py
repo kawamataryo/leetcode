@@ -18,15 +18,16 @@ class Solution:
         if root is None:
             return 0
 
-        def traverse_node(node: TreeNode, depth: int) -> int:
-            depth += 1
-            if node.right is None and node.left is None:
-                return depth
-            if node.left is not None and node.right is not None:
-                return max(traverse_node(node.left, depth), traverse_node(node.right, depth))
-            if node.right is not None:
-                return traverse_node(node.right, depth)
-            if node.left is not None:
-                return traverse_node(node.left, depth)
-        return traverse_node(root, 0)
+        q = deque([(root, 1)])
+        max_depth = 1
+        while q:
+            node, depth = q.popleft()
+            if depth > max_depth:
+                max_depth = depth
+            if node.left:
+                q.append((node.left, depth + 1))
+            if node.right:
+                q.append((node.right, depth + 1))
+
+        return max_depth
 # @lc code=end
