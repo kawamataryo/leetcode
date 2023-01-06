@@ -18,15 +18,9 @@ class Solution:
     def maxDepth(self, root: 'Node') -> int:
         if root is None:
             return 0
-
-        q = deque([(root, 1)])
-        max_depth = 0
-
-        while q:
-            node, depth = q.popleft()
-            if depth > max_depth:
-                max_depth = depth
-            for child in node.children:
-                q.append((child, depth + 1))
-        return max_depth
+        max_depth_children = 0
+        for child in root.children:
+            depth = self.maxDepth(child)
+            max_depth_children = max(max_depth_children, depth)
+        return max_depth_children + 1
 # @lc code=end
