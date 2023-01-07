@@ -20,7 +20,7 @@ class Solution:
                 self.ans += 1
             else:
                 if grid[row - 1][col]:
-                    if not (row - 1, col) in self.visited:
+                    if (row - 1, col) not in self.visited:
                         traverse_island(row - 1, col)
                 else:
                     self.ans += 1
@@ -29,7 +29,7 @@ class Solution:
                 self.ans += 1
             else:
                 if grid[row + 1][col]:
-                    if not (row + 1, col) in self.visited:
+                    if (row + 1, col) not in self.visited:
                         traverse_island(row + 1, col)
                 else:
                     self.ans += 1
@@ -38,7 +38,7 @@ class Solution:
                 self.ans += 1
             else:
                 if grid[row][col - 1]:
-                    if not (row, col - 1) in self.visited:
+                    if (row, col - 1) not in self.visited:
                         traverse_island(row, col - 1)
                 else:
                     self.ans += 1
@@ -47,7 +47,7 @@ class Solution:
                 self.ans += 1
             else:
                 if grid[row][col + 1]:
-                    if not (row, col + 1) in self.visited:
+                    if (row, col + 1) not in self.visited:
                         traverse_island(row, col + 1)
                 else:
                     self.ans += 1
