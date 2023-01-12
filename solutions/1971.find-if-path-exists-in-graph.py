@@ -5,6 +5,8 @@
 #
 
 # @lc code=start
+from collections import defaultdict
+
 class Solution:
     def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
         if source == destination:
@@ -21,19 +23,18 @@ class Solution:
             else:
                 edge_map[num2] = set([num1])
 
-        self.result = False
-        def traverse(edge: int, visited: Set[int]):
+        visited = set([])
+        q = deque([source])
+        while q:
+            edge = q.popleft()
             if edge in visited:
-                return
+                continue
             if destination in edge_map[edge]:
-                self.result = True
-                return
+                return True
             visited.add(edge)
             for next_edge in edge_map[edge]:
-                traverse(next_edge, visited)
+                q.append(next_edge)
 
-        traverse(source, set([]))
-
-        return self.result
+        return False
 
 # @lc code=end
