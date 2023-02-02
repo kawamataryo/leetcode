@@ -11,25 +11,27 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-from collections import namedtuple
+from collections import deque
 
 class Solution:
     def deepestLeavesSum(self, root: Optional[TreeNode]) -> int:
-        deepest = [0, 0]
-        def dfs(node: Optional[TreeNode], level: int):
-            if node is None:
-                return
-            if node.left is None and node.right is None:
-                if level > deepest[0]:
-                    deepest[0] = level
-                    deepest[1] = node.val
-                    return
-                if level == deepest[0]:
-                    deepest[1] += node.val
-                    return
-            dfs(node.left, level + 1)
-            dfs(node.right, level + 1)
+        if root is None:
+            return 0
 
-        dfs(root, 0)
-        return deepest[1]
+        queue = deque([(root, 0)])
+        max_depth = 0
+        ans = 0
+        while queue:
+            node, depth = queue.popleft()
+            if node.left:
+                queue.append((node.left, depth + 1))
+            if node.right:
+                queue.append((node.right, depth + 1))
+            if node.left is None and node.right is None:
+                if depth == max_depth:
+                    ans += node.val
+                elif depth > max_depth:
+                    max_depth = depth
+                    ans = node.val
+        return ans
 # @lc code=end
