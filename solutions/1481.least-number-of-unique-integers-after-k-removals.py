@@ -1,4 +1,4 @@
-#
+t#
 # @lc app=leetcode id=1481 lang=python3
 #
 # [1481] Least Number of Unique Integers after K Removals
