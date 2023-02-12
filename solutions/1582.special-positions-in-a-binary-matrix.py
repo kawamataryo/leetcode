@@ -17,6 +17,7 @@ class Solution:
             for i in range(col_len):
                 if row[i] == 1 and sum(tr_mat[i]) == 1:
                     ans += 1
+                    break
         return ans
 
 
