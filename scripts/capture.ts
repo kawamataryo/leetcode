@@ -40,13 +40,15 @@ const captureStreak = async (user: string) => {
     const streakElement = await page.waitForXPath(xpath);
 
     // capture light mode
+    await page.evaluate((html) => {
+      html.classList.remove("dark");
+    }, await page.$("html"));
     await streakElement?.screenshot({ path: `images/${name}.png` });
 
     // capture dark mode
     await page.evaluate((html) => {
       html.classList.add("dark");
     }, await page.$("html"));
-
     await streakElement?.screenshot({ path: `images/${name}_dark.png` });
   }
 
