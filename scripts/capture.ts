@@ -17,7 +17,9 @@ const captureStreak = async (user: string) => {
   await page.waitForXPath(selector);
   const element = await page.$x(selector); // declare a variable with an ElementHandle
 
-  await Deno.mkdir("images");
+  await Deno.mkdir("images", {
+    'recursive': true
+  });
 
   // capture light mode
   await element[0].screenshot({ path: "images/streak.png" });
