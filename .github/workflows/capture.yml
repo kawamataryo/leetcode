@@ -6,11 +6,14 @@ on:
       - main
 
 jobs:
-  hello:
+  capture_streak:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
-      - run: deno task run
+      - name: Install Puppeteer
+        run: PUPPETEER_PRODUCT=chrome deno install --allow-net --allow-read --allow-env --allow-run https://deno.land/x/puppeteer@16.2.0/install.ts
+      - name: Capture streak
+        run: deno task run
