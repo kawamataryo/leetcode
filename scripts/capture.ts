@@ -47,7 +47,7 @@ const updateReadme = async () => {
     const updateTime = `  \nLast Updated on ${new Date().toLocaleString()}`
     readme.replace(markerPattern, `$1\n${updateTime}\n$2`)
 
-    await Deno.writeTextFile(README_FILE_PATH, "Hello World!");
+    await Deno.writeTextFile(README_FILE_PATH, readme);
 }
 
 const main = async () => {
