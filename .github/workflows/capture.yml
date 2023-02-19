@@ -14,6 +14,7 @@ jobs:
         with:
           deno-version: v1.x
       - name: Install Puppeteer
-        run: PUPPETEER_PRODUCT=chrome deno install --allow-net --allow-read --allow-env --allow-run https://deno.land/x/puppeteer@16.2.0/install.ts
+        run: PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16.2.0/install.ts
+
       - name: Capture streak
         run: PUPPETEER_PRODUCT=chrome deno task run
