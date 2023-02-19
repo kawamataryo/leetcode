@@ -4,8 +4,8 @@ https://leetcode.com/kawamataryo/
 
 <a href="https://leetcode.com/kawamataryo/" target="_blank">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./images/problems_dark.png">
-  <img alt="" src="./images/problems.png">
+  <source media="(prefers-color-scheme: dark)" srcset="./images/problems_dark.png" width="500">
+  <img alt="" src="./images/problems.png" width="500">
 </picture>
 </a>
 <a href="https://leetcode.com/kawamataryo/" target="_blank">
