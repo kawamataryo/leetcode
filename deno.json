@@ -1,0 +1,5 @@
+{
+  "tasks": {
+    "run": "deno run --unstable --allow-env --allow-write --allow-read --allow-run --allow-net scripts/capture.ts"
+  }
+}
