@@ -2,5 +2,7 @@
 
 https://leetcode.com/kawamataryo/
 
-[![Visit my website!](./images/streak_dark.png#gh-dark-mode-only)](https://leetcode.com/kawamataryo/")
-[![Visit my website!](./images/streak.png#gh-light-mode-only)](https://leetcode.com/kawamataryo/")
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./images/streak_dark.png">
+  <img alt="" src="./images/streak_dark.png">
+</picture>
