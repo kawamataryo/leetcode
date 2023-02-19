@@ -2,7 +2,5 @@
 
 https://leetcode.com/kawamataryo/
 
-<a href="https://leetcode.com/kawamataryo/">
-  <img alt="" src="./images/streak_dark.png#gh-dark-mode-only">
-  <img alt="" src="./images/streak.png#gh-light-mode-only">
-</a>
+[![Visit my website!](./images/streak_dark.png#gh-dark-mode-only)](https://leetcode.com/kawamataryo/")
+[![Visit my website!](./images/streak.png#gh-light-mode-only)](https://leetcode.com/kawamataryo/")
