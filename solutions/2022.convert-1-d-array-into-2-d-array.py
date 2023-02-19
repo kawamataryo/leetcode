@@ -8,17 +8,17 @@
 class Solution:
     def construct2DArray(self, original: List[int], m: int, n: int) -> List[List[int]]:
         ans = []
-        original_que = deque(original)
+        que = deque(original)
         for row in range(m):
             ans_col = []
             for col in range(n):
-                if len(original_que) == 0:
+                if len(que) == 0:
                     return []
-                num = original_que.popleft()
+                num = que.popleft()
                 ans_col.append(num)
             ans.append(ans_col)
 
-        if len(original_que) == 0:
+        if len(que) == 0:
             return ans
         else:
             return []
