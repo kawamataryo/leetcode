@@ -5,6 +5,12 @@ import { MARK } from "./constants.ts";
 const captureStreak = async (user: string) => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
+
+  await page.setViewport({
+    width: 1200,
+    height: 1500
+})
+
   await page.goto(`https://leetcode.com/${user}/`, {
     waitUntil: "networkidle0",
   });
