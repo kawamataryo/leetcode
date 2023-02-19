@@ -1,6 +1,6 @@
 import { z } from "https://deno.land/x/zod@v3.20.2/mod.ts";
 import { capturePage } from "./lib/capturePage.ts";
-import { updateReadme } from "./lib/main.ts";
+import { updateReadme } from "./lib/updateReadme.ts";
 
 
 const main = async () => {
