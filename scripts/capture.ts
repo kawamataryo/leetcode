@@ -7,8 +7,9 @@ const captureStreak = async (user: string) => {
   const page = await browser.newPage();
 
   await page.setViewport({
-    width: 1200,
-    height: 1500
+    width: 1920,
+    height: 1080,
+    deviceScaleFactor: 2
 })
 
   await page.goto(`https://leetcode.com/${user}/`, {
