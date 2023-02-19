@@ -1,27 +1,60 @@
 import puppeteer from "https://deno.land/x/puppeteer@16.2.0/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.20.2/mod.ts";
+import { MARK } from "./constants.ts";
 
-const browser = await puppeteer.launch();
-const page = await browser.newPage();
-await page.goto("https://leetcode.com/kawamataryo/", {
-  waitUntil: "networkidle2",
-});
+const captureStreak = async (user: string) => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(`https://leetcode.com/${user}/`, {
+    waitUntil: "networkidle2",
+  });
 
-await page.emulateMediaFeatures([
-  { name: "prefers-color-scheme", value: "dark" },
-]);
-const selector = "//span[contains(., 'submissions in the last year')]/parent::div/parent::div/parent::div"
-await page.waitForXPath(selector);
-const element = await page.$x(selector);        // declare a variable with an ElementHandle
+  await page.emulateMediaFeatures([
+    { name: "prefers-color-scheme", value: "dark" },
+  ]);
+  const selector =
+    "//span[contains(., 'submissions in the last year')]/parent::div/parent::div/parent::div";
+  await page.waitForXPath(selector);
+  const element = await page.$x(selector); // declare a variable with an ElementHandle
 
-// light mode
-await element[0].screenshot({ path: "images/streak.png" });
+  await Deno.mkdir("images");
 
-// dark mode
-const htmlHandle = await page.$('html')
-await page.evaluate((html) => {
-  html.classList.add("dark")
-}, htmlHandle)
+  // capture light mode
+  await element[0].screenshot({ path: "images/streak.png" });
 
-await element[0].screenshot({ path: "images/streak_dark.png" });
+  // capture dark mode
+  const htmlHandle = await page.$("html");
+  await page.evaluate((html) => {
+    html.classList.add("dark");
+  }, htmlHandle);
 
-await browser.close();
+  await element[0].screenshot({ path: "images/streak_dark.png" });
+
+  await browser.close();
+};
+
+const updateReadme = async () => {
+    const README_FILE_PATH = './README.md'
+
+    const readme = await Deno.readTextFile(README_FILE_PATH);
+    const markerPattern = new RegExp(`(${MARK.START})[\\s\\S]*(${MARK.END})`)
+    if (!markerPattern.test(readme)) {
+      throw new Error("Error: MARKER is not exists in README.md")
+    }
+
+    const updateTime = `  \nLast Updated on ${new Date().toLocaleString()}`
+    readme.replace(markerPattern, `$1\n${updateTime}\n$2`)
+
+    await Deno.writeTextFile(README_FILE_PATH, "Hello World!");
+}
+
+const main = async () => {
+  // capture image
+  const user = z.string().parse(Deno.env.get("LEET_CODE_USER_NAME"));
+  await captureStreak(user);
+
+  // update README
+  await updateReadme()
+};
+
+main();
