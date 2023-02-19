@@ -9,8 +9,12 @@ const captureStreak = async (user: string) => {
   await page.setViewport({
     width: 1920,
     height: 1080,
-    deviceScaleFactor: 2
-})
+    deviceScaleFactor: 2,
+  });
+
+  await Deno.mkdir("images", {
+    "recursive": true,
+  });
 
   await page.goto(`https://leetcode.com/${user}/`, {
     waitUntil: "networkidle0",
@@ -19,43 +23,50 @@ const captureStreak = async (user: string) => {
   await page.emulateMediaFeatures([
     { name: "prefers-color-scheme", value: "dark" },
   ]);
-  const selector =
-    "//span[contains(., 'submissions in the last year')]/parent::div/parent::div/parent::div";
-  await page.waitForXPath(selector);
-  const element = await page.$x(selector); // declare a variable with an ElementHandle
 
-  await Deno.mkdir("images", {
-    'recursive': true
-  });
+  const targets = [
+    {
+      xpath:
+        "//span[contains(., 'submissions in the last year')]/parent::div/parent::div/parent::div",
+      name: "streak",
+    },
+    {
+      xpath: "//div[contains(., 'Solved Problems') and not(*)]/parent::div",
+      name: "problems",
+    },
+  ];
 
-  // capture light mode
-  await element[0].screenshot({ path: "images/streak.png" });
+  for (const { xpath, name } of targets) {
+    const streakElement = await page.waitForXPath(xpath);
 
-  // capture dark mode
-  const htmlHandle = await page.$("html");
-  await page.evaluate((html) => {
-    html.classList.add("dark");
-  }, htmlHandle);
+    // capture light mode
+    await streakElement?.screenshot({ path: `images/${name}.png` });
 
-  await element[0].screenshot({ path: "images/streak_dark.png" });
+    // capture dark mode
+    await page.evaluate((html) => {
+      html.classList.add("dark");
+    }, await page.$("html"));
+
+    await streakElement?.screenshot({ path: `images/${name}_dark.png` });
+  }
 
   await browser.close();
 };
 
 const updateReadme = async () => {
-    const README_FILE_PATH = './README.md'
+  const README_FILE_PATH = "./README.md";
 
-    const readme = await Deno.readTextFile(README_FILE_PATH);
-    const markerPattern = new RegExp(`(${MARK.START})[\\s\\S]*(${MARK.END})`)
-    if (!markerPattern.test(readme)) {
-      throw new Error("Error: MARKER is not exists in README.md")
-    }
+  const readme = await Deno.readTextFile(README_FILE_PATH);
+  const markerPattern = new RegExp(`(${MARK.START})[\\s\\S]*(${MARK.END})`);
+  if (!markerPattern.test(readme)) {
+    throw new Error("Error: MARKER is not exists in README.md");
+  }
 
-    const updateTime = `  \nLast Updated on ${new Date().toLocaleString()}`
-    readme.replace(markerPattern, `$1\n${updateTime}\n$2`)
+  const updateTime = `  \nLast Updated on ${new Date().toLocaleString()}`;
+  const newReadme = readme.replace(markerPattern, `$1\n${updateTime}\n$2`);
 
-    await Deno.writeTextFile(README_FILE_PATH, readme);
-}
+  await Deno.writeTextFile(README_FILE_PATH, newReadme);
+};
 
 const main = async () => {
   // capture image
@@ -63,7 +74,7 @@ const main = async () => {
   await captureStreak(user);
 
   // update README
-  await updateReadme()
+  await updateReadme();
 };
 
 main();
