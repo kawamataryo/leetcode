@@ -17,6 +17,9 @@ jobs:
         run: PUPPETEER_PRODUCT=chrome deno run -A --unstable https://deno.land/x/puppeteer@16.2.0/install.ts
       - name: Capture streak
         run: PUPPETEER_PRODUCT=chrome deno task run
+        env:
+          LEET_CODE_USER_NAME: kawamataryo
+
       - uses: EndBug/add-and-commit@v9
         with:
           default_author: github_actions
