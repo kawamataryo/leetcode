@@ -23,7 +23,7 @@ export const updateReadme = async (user: string) => {
 </picture>
 </a>
   \nLast Updated on ${new Date().toLocaleString()}
-  `
+  `;
 
   const newReadme = readme.replace(markerPattern, `$1\n${markup}\n$2`);
 
