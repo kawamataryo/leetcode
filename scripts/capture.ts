@@ -6,7 +6,7 @@ const captureStreak = async (user: string) => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(`https://leetcode.com/${user}/`, {
-    waitUntil: "networkidle2",
+    waitUntil: "networkidle0",
   });
 
   await page.emulateMediaFeatures([
