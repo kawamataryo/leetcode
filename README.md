@@ -8,4 +8,4 @@ https://leetcode.com/kawamataryo/
   <img alt="" src="./images/streak.png">
 </picture>
 </a>
-<!--START_SECTION:leetcode-streak-updated-at--><!--END_SECTION:leetcode-streak-updated-at-->
+<!--START_SECTION:leetcode-streak-updated-time--><!--END_SECTION:leetcode-streak-updated-time-->
