@@ -18,6 +18,8 @@ export const capturePage = async (user: string) => {
     waitUntil: "networkidle0",
   });
 
+  await new Promise((r) => setTimeout(r, 3000))
+
   await page.emulateMediaFeatures([
     { name: "prefers-color-scheme", value: "dark" },
   ]);
