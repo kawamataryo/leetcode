@@ -18,12 +18,6 @@ export const capturePage = async (user: string) => {
     waitUntil: "networkidle0",
   });
 
-  await new Promise((r) => setTimeout(r, 3000))
-
-  await page.emulateMediaFeatures([
-    { name: "prefers-color-scheme", value: "dark" },
-  ]);
-
   const targets = [
     {
       xpath:
@@ -39,11 +33,15 @@ export const capturePage = async (user: string) => {
   for (const { xpath, name } of targets) {
     const streakElement = await page.waitForXPath(xpath);
 
+    await new Promise((r) => setTimeout(r, 3000))
+
     // capture light mode
     await page.evaluate((html) => {
       html.classList.remove("dark");
     }, await page.$("html"));
     await streakElement?.screenshot({ path: `images/${name}.png` });
+
+    await new Promise((r) => setTimeout(r, 3000))
 
     // capture dark mode
     await page.evaluate((html) => {
