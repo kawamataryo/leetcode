@@ -15,7 +15,7 @@ class Solution:
             if normalize_s[first] != normalize_s[last]:
                 return False
             first += 1
-            last -= 1
+            last -= https://item.rakuten.co.jp/f372072-higashikagawa/46311831/1
 
         return True
 # @lc code=end
