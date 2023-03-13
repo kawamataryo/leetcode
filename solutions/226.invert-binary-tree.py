@@ -16,14 +16,9 @@ from collections import deque
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if root is None:
-            return None
-
-        tmp = root.left
-        root.left = root.right
-        root.right = tmp
-
+            return
+        root.left, root.right = root.right, root.left
         self.invertTree(root.left)
         self.invertTree(root.right)
-
         return root
 # @lc code=end
